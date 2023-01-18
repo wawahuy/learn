@@ -1,0 +1,44 @@
+# de roll lai cac version cu dung lenh
+# kubectl rollout history deploy/deploy
+#
+# de xem thong tin version
+# kubectl rollout history deploy/deploy --revision=1
+#
+# de quay lai
+# kubectl rollout undo deploy/deploy --to-revision=1
+#
+# de scale mot cach thu cong
+# kubectl scale deploy/deploy --replicas=2
+#
+# tao HPA qua command va output ra yaml
+# kubectl autoscale deploy/deploy --min=3 --max=8
+# kubectl get hpa/deploy -o yml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+spec:
+  selector:
+    matchLabels:
+      app: deployapp
+
+  replicas: 3
+
+  template:
+    metadata:
+      name: deployapp
+      labels:
+        app: deployapp
+    spec:
+      containers:
+      - name: app
+        # image: ichte/swarmtest:node
+        image: nginx
+        resources:
+          limits:
+            memory: "150Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 8085

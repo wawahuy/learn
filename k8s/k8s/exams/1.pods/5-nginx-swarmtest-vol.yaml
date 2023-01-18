@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-swarmtest-vol
+  labels:
+    name: nginx-swarmtest-vol
+spec:
+  # kiem tra label node
+  # kubectl describe node worker1.xtl
+  # neu khong co nhan thi tao moi
+  # kubectl label node worker1.xtl "abc=123"
+  # xoa
+  # kubectl label node worker1.xtl abc-
+  # it khi chuyen khac
+  nodeSelector:
+    kubernetes.io/hostname: worker1.xtl
+
+  volumes:
+    - name: "myvol"
+      hostPath:
+        # thu muc tren may root /home/html la may worker chay pod chu khong phai master
+        # vi vay can phai cho nhung may nao co data chay thong qua 'nodeSelector'
+        path: "/home/html"
+
+  containers:
+  - name: n1
+    image: nginx:1.17.6
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+    volumeMounts:
+      - mountPath: /usr/share/nginx/html
+        name: "myvol"
+
+  - name: a2
+    image: ichte/swarmtest:node
+    resources:
+      limits:
+        memory: "150Mi"
+        cpu: "100m"
+    ports:
+      - containerPort: 8085
+    volumeMounts:
+      - mountPath: /data/
+        name: "myvol"

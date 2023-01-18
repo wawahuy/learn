@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rsapp
+spec:
+  replicas: 3
+  
+  selector:
+    matchLabels:
+      # chuyen khai cac pod co nhan nhu ben duoi
+      app: rsapp
+
+  template:
+    # template pod
+    metadata:
+      name: rsapp
+      labels:
+        # target match
+        app: rsapp
+
+    spec:
+      containers:
+      - name: app
+        image: ichte/swarmtest:node
+        resources:
+          limits:
+            memory: "150Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 8085

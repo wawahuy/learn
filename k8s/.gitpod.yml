@@ -1,0 +1,38 @@
+image: gitpod/workspace-full
+tasks:
+  - name: Setup git
+    command: |
+      if [[ -z "$GH_TOKEN" ]]; then
+        exit
+      fi
+      if [[ -z "$GH_USERNAME" ]]; then
+          GH_USERNAME=wawahuy
+      fi
+      if [[ -z "$GH_MAIL" ]]; then
+          GH_MAIL="kakahuy99@gmail.com"
+      fi
+      git config user.name "$GH_USERNAME"
+      git config user.email "$GH_MAIL"
+      git config credential.username "$GH_USERNAME"
+      git config --global user.name "$GH_USERNAME"
+      git config --global user.email "$GH_MAIL"
+      git config --global credential.username "$GH_USERNAME"
+      git remote set-url origin https://$GH_USERNAME:$GH_TOKEN@github.com/wawahuy/learn-k8s.git
+      exit
+  - name: Set wakatime
+    command: |
+      echo -e "[settings]\napi_key = $WAKATIME_API_KEY" > ~/.wakatime.cfg
+      exit
+
+  - name: prepare k8s
+    command: |
+      .gitpod/prepare-k8s.sh $K8S_TYPE
+  - name: kernel dev environment
+    init: |
+      sudo apt update -y
+      sudo apt upgrade -y
+      sudo apt update -y
+      sudo apt install qemu qemu-system-x86 linux-image-generic libguestfs-tools sshpass netcat -y
+      .gitpod/prepare-rootfs.sh
+    command: |
+      .gitpod/qemu.sh $K8S_TYPE

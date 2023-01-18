@@ -1,0 +1,7 @@
+clients:
+  - sshuser1@gitpod-host1
+  - sshuser2@gitpod-host1
+
+vpn:
+  connection: sshuser-vpn@gitpod-host-vpn
+  port: 1194

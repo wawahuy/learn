@@ -1,0 +1,25 @@
+{
+  "name": "learn-k8s",
+  "version": "1.0.0",
+  "description": "no",
+  "main": "",
+  "type": "module",
+  "scripts": {
+    "gpmanage": "node gpmange/gpmange.js",
+    "gpcluster": "bash .gitpod/copy-cluster.sh",
+    "gpvpn": "sudo openvpn .gitpod/vpn-s2c/keys/host.ovpn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wawahuy/learn-k8s.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wawahuy/learn-k8s/issues"
+  },
+  "homepage": "https://github.com/wawahuy/learn-k8s#readme",
+  "dependencies": {
+    "yaml": "^2.1.3"
+  }
+}
