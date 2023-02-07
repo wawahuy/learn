@@ -1,0 +1,57 @@
+version: '3.8'
+
+x-shared_environment: &shared_environment
+  RN_RABBITMQ_HOST: rn-rabbitmq
+  RN_RABBITMQ_PORT: 5672
+  RN_RABBITMQ_MGMT_PORT: 15672
+  RN_MONGO_HOST: rn-mongo
+  RN_MONGO_PORT: 27017
+  RN_MONGO_DB: rn
+  RN_REDIS_HOST: rn-redis
+  RN_REDIS_PORT: 6379
+
+services:
+  rn-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      <<: *shared_enviroment
+    volumes:
+      - ./:/data/app
+
+  rn-rabbitmq:
+    image: rabbitmq:3.9.27-alpine
+    environment:
+      <<: *shared_environment
+    # enable plugins mgmt
+    command: sh -c "rm -rf /etc/rabbimq/conf.d && rabbitmq-plugins enable rabbitmq_management && rabbitmq-server"
+    ports:
+      - 15672:15672
+    volumes:
+      - ./conf/rabbitmq-dev:/etc/rabbitmq/
+
+  rn-mongo:
+    image: mongo:6.0.3
+    command: mongod --quiet --logpath /dev/null 
+    environment:
+      <<: *shared_environment
+    ports:
+      - 27017:27017
+    volumes:
+      - ./conf/mongod.dev.conf:/etc/mongodb.conf
+      - ./data/mongo/log:/var/log/mongodb/
+      - ./data/mongo/data:/data/db
+
+  rn-redis:
+    image: redis:7.0.7-alpine3.17
+    environment:
+      <<: *shared_environment
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./conf/redis.dev.conf:/usr/local/etc/redis/redis.conf
+      - ./data/redis:/data

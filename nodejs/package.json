@@ -1,0 +1,29 @@
+{
+  "name": "design-pattern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "assert": "nodemon --watch \"assert/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm assert/index.ts\"",
+    "async-context-tracking": "nodemon --watch \"async-context-tracking/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm async-context-tracking/index.ts\"",
+    "cluster": "nodemon --watch \"cluster/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm cluster/index.ts\"",
+    "http2": "nodemon --watch \"http2/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm http2/index.ts\"",
+    "https": "nodemon --watch \"https/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm https/index.ts\"",
+    "inspector": "nodemon --watch \"inspector/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm inspector/index.ts\"",
+    "performance_hook": "nodemon --watch \"performance_hook/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm performance_hook/index.ts\"",
+    "repl": "nodemon --watch \"repl/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm repl/index.ts\"",
+    "worker": "nodemon --watch \"worker/*\" --ext \"ts,json\" --exec \"node --loader ts-node/esm worker/index.ts\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
