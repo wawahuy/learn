@@ -1,0 +1,24 @@
+
+// login success
+POST http://localhost:3000/jwt-native/login
+content-type: application/json
+
+{
+    "username": "test",
+    "password": "test"
+}
+
+###
+// test
+GET http://localhost:3000/jwt-native/test
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NzYyMDY3ODAsImV4cCI6MTY3NjIwNjg0MH0.LPIwtAXwFU4zDO96nds7bSDd_i4-1CrZEvSa_b9aPNc
+
+###
+// refresh token
+POST http://localhost:3000/jwt-native/access_token
+content-type: application/json
+
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpYXQiOjE2NzYyMDc3NjEsImV4cCI6MTY3NjIxMTM2MX0.KjdB62XN6Hq7Fv6rUkydsSM2Lg6Q-KCfrecQeYX_WvU"
+}

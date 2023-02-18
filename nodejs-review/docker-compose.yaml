@@ -18,9 +18,9 @@ services:
     ports:
       - 3000:3000
     environment:
-      <<: *shared_enviroment
+      <<: *shared_environment
     volumes:
-      - ./:/data/app
+      - ./:/data/app/
 
   rn-rabbitmq:
     image: rabbitmq:3.9.27-alpine
@@ -42,8 +42,8 @@ services:
       - 27017:27017
     volumes:
       - ./conf/mongod.dev.conf:/etc/mongodb.conf
-      - ./data/mongo/log:/var/log/mongodb/
-      - ./data/mongo/data:/data/db
+      - ../data/mongo/log:/var/log/mongodb/
+      - ../data/mongo/data:/data/db
 
   rn-redis:
     image: redis:7.0.7-alpine3.17
@@ -54,4 +54,4 @@ services:
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - ./conf/redis.dev.conf:/usr/local/etc/redis/redis.conf
-      - ./data/redis:/data
+      - ../data/redis:/data
