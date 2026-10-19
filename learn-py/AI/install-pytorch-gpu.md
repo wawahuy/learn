@@ -1,0 +1,1 @@
+uv pip install --reinstall torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu130
