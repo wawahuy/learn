@@ -14,12 +14,13 @@ lr = 0.01
 epochs = 1000
 for epoch in range(epochs):
     y_pred = w * x + b
-    # L=(wx+b−y)**2 
-    # L=(error)**2 => dL= 2*error
-    # f(w) = wx+b−y => f'(w) = x
-    # f(b) = wx+b−y => f'(b) = 1
-    # dL/dw = 2*error*x
-    # dL/db = 2*error
+    # e(x) = w*x+b-y
+    # l(x) = e(x)**2
+    # l'(w) = dl/dw = dl/de * de/dw = 2 * e * x
+    #    + dl/de = 2 * e
+    #    + de/dx = x
+    # l'(b) = dl/dw = dl/de * de/db = 2 * e * 1
+
     error = y_pred - y
     loss = np.mean(error**2)
     dw = np.mean(2 * error * x)
