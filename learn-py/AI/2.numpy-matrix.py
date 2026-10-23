@@ -17,9 +17,18 @@ b = 0.0
 lr = 0.01
 epochs = 1000
 for epoch in range(epochs):
+    # e(x) = w1*x + w2*x + w3*x + b
+    # l(x) = e(x)**2
+    # l'(x) = 2*e(x)*e'(x)
+    # l'(w1) = 2*e(w1)*e'(w1) = 2*e(x)*x
+    # l'(w2) = 2*e(w2)*e'(w2) = 2*e(x)*x
+    # l'(w3) = 2*e(w3)*e'(w3) = 2*e(x)*x
+    # l'(b) = dl/dw = dl/de * de/db = 2 * e * 1
+
     y_pred = X @ w + b
     error = y_pred - y
     loss = np.mean(error**2)
+
     dw = (2 / len(X)) * X.T @ error
     db = (2 / len(X)) * np.sum(error)
 
