@@ -9,7 +9,7 @@ Nguyên tắc: mỗi bài tự viết tay trước rồi mới dùng thư viện
 - [x] 4. Hồi quy nhiều biến bằng PyTorch
 - [x] 5. Neural network tự viết tay (ReLU, backprop) trên `sin(x)`
 - [x] 6. `nn.Linear`, `nn.ReLU`, optimizer và `nn.Module`
-- [ ] 7. Phân loại nhị phân: sigmoid, binary cross-entropy
+- [x] 7. Phân loại nhị phân: sigmoid, binary cross-entropy
 - [ ] 8. Softmax và phân loại nhiều lớp
 - [ ] 9. Đạo hàm của cross-entropy, tự viết backward tay
 - [ ] 10. Tự viết một mini autograd (giống micrograd)
